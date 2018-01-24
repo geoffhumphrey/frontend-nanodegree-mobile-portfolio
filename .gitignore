@@ -1,0 +1,6 @@
+*.db
+node_modules/*
+sso/*
+*.sublime-project
+*.sublime-workspace
+package-lock.json
