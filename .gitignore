@@ -1,6 +1,7 @@
-*.db
 node_modules/*
-sso/*
 *.sublime-project
 *.sublime-workspace
 package-lock.json
+package.json
+Gruntfile.js
+sftp-config.json
