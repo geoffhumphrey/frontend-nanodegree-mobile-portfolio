@@ -39,8 +39,8 @@ Compressed views/images/pizza.png (used in the page background).
 Most of the optimizations for the pizzeria portfolio item were made in this file:
 - changePizzaSizes function
   - replaced the querySelectorAll methods with the more optimal getElementsByClassName.
-  - determineDX function seemed to be a bit redundant and the only part of the fucntion that was needed was the sizeSwitcher function.
-  - moved the new width calculation out of the for loop as there was no need to calculate that more than once
+  - determineDX function seemed to be a bit redundant and the only part of the function that was needed was the sizeSwitcher function.
+  - moved the new width calculation out of the for loop as there was no need to calculate that more than once.
 - updatePositions function.
   - replaced querySelectorAll in favor of getElementsByClassName.
   - moved the items variable outside the function, since we're referencing the same class name, no need to declare it each time the function runs
