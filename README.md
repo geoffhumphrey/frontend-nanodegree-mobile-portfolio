@@ -1,55 +1,31 @@
-## Website Performance Optimization portfolio project
+## Front-end Nanodegree Website Optimization Project
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+The challenge for this project was to optimize this an portfolio for speed. Using [Google's PageSpeed](https://developers.google.com/speed/pagespeed/insights/) service, the optimized index.html page and associated dependencies must attain a score of 90 or better for both the mobile and desktop views. At last measure, the optimizations detailed below resulted in a [score of 99 for mobile](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fgeoffhumphrey.github.io%2Ffrontend-nanodegree-mobile-portfolio%2F) and [91 for desktop](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fgeoffhumphrey.github.io%2Ffrontend-nanodegree-mobile-portfolio%2F&tab=desktop).
 
-To get started, check out the repository and inspect the code.
+### Optimizations
 
-### Getting started
+Optimizations for the project focused on these main sources: /index.html (and associated files), images contained in the /img and /views/imgages directories, and /views/js/main.js.
 
-#### Part 1: Optimize PageSpeed Insights score for index.html
+### index.html
 
-Some useful tips to help you get started:
+_Note that the following changes were also applied to the /project-2048.html, /project-mobile.html, and /project-webperf.html files as well as /index.html._
 
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
+A quick change that was very easy to make, but had a great impact on performance, was to load the Google Analytics script asynchronously:
+```<script async src="http://www.google-analytics.com/analytics.js"></script>```
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
+The same can be applied to the /js/perfmatters.js file:
+```<script async src="js/perfmatters.js"></script>```
 
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to the top-level of your project directory to make your local server accessible remotely.
+Analytics script loads were also moved to the end of the page.
 
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ./ngrok http 8080
-  ```
+A media="print" attribute was added to the print.css tag to lower the priority of its load.
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+Finally, referenced a smaller and more compressed version of pizzeria.jpg instead of requiring the browser to resize the behemoth original image (see image optimizations below)
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+### Image Optimizations
 
-#### Part 2: Optimize Frames per Second in pizza.html
+All images were compressed utilizing Photoshop, reducing their sizes to optimal levels for their respective uses. I realize that there are image optimizers available via Grunt. In the interest of time, I fell back to a more familiar way using Photoshop. A goal of mine is to get fully versed in Grunt to make image optimization and minifying far less "manual" processes.
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+In particular, the /views/images/pizzeria.jpg file, prior to optimization, was a burly 2.25 megabytes! Utilizing a combination of optimization and the [srcset](https://developers.google.com/web/fundamentals/design-and-ux/responsive/images) attribute for [responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) so that the proper image scale (and thus, filesize) is presented to the user depending upon their device.
 
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
 
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
-
-### Customization with Bootstrap
-The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
-
-* <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
-* <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
